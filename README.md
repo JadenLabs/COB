@@ -3,7 +3,7 @@
 > Join here @ https://discord.gg/g4fHqnSNr2
 
 ## Setup
-If you want to use this bot for yourself follow these steps.
+If you would like to use this bot for yourself, follow these steps:
 
 1. **Install** the latest version of [Node.js](https://nodejs.org/).
 
@@ -18,14 +18,14 @@ cd COB
 npm install
 ```
 
-5. **Create** a token.js file.
+5. **Create** a token.js file:
 ```json
 {
     "token": "<token>"
 }
 ``` 
 
-6. **Run** the bot
+6. **Run** the bot:
 ```
 node .
 ```
