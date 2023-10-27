@@ -15,9 +15,9 @@ statusType: "online"
 # The status cycles through this list
 statusMessages:
     # Going for an animation here
-    - "─ CORN ───"
-    - "─── CORN ─"
-    - "───── CORN"
-    - "N ───── CO"
-    - "ORN ───── "
-    - " CORN ────"
+    - "|─ CORN ──|"
+    - "|─── CORN |"
+    - "|───── COR|"
+    - "|N ───── C|"
+    - "|ORN ─────|"
+    - "| CORN ───|"
