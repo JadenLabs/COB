@@ -51,8 +51,8 @@ function updateBotStatus() {
 client.on("ready", () => {
     updateBotStatus(); // Call this function when the bot is ready.
 
-    // Set up an interval to ping the API every 15 seconds (15,000 milliseconds).
-    setInterval(updateBotStatus, 15000);
+    // Set up an interval to change the status.
+    setInterval(updateBotStatus, 5000);
 });
 
 // Log in to Discord with your client's token
