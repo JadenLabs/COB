@@ -1,4 +1,4 @@
-const config = require("../utils/config");
+const config = require("../../utils/config");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
