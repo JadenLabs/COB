@@ -11,7 +11,7 @@ If you would like to use this bot for yourself, follow these steps:
 
 3. Go to the bot page of your app and **get the bot's token** - also enable all Privileged Gateway Intents.
 
-4. **Clone** this GitHub repo:
+4. **Clone** this GitHub repo, **Change Directory**, and **Install** packages:
 ```
 git clone https://github.com/JadenLabs/COB.git
 cd COB
