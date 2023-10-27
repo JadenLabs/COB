@@ -64,7 +64,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     try {
 		logger("Bot", "Command", "Info", `Running ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
         await command.execute(interaction);
-		logger("Bot", "Command", "Info", `Running ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
+		logger("Bot", "Command", "Info", `Ran ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
     } catch (error) {
         console.error(error);
         if (interaction.replied || interaction.deferred) {
