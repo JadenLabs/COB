@@ -36,6 +36,12 @@ npm install
 node .
 ```
 
+#### Inviting
+To invite your bot, copy the following url into your browser after filling in the bot's id:
+```
+https://discord.com/api/oauth2/authorize?client_id=<BOT-ID>&permissions=1634734566647&scope=bot%20applications.commands
+```
+
 # Contributing to COB
 Thank you for your interest in contributing to this project! We welcome all contributions to help make this project better :D
 
