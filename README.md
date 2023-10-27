@@ -1,6 +1,8 @@
 # COB - Discord Bot
-> A WIP made by roc.py for the Cave of Chaos Discord server, contributions welcome!
-> Join here @ https://discord.gg/g4fHqnSNr2
+An experimental bot where you can contribute whatever you'd like.
+
+**Discord Server**:
+> https://discord.gg/tw6m7hd4xV
 
 ## Setup
 If you would like to use this bot for yourself, follow these steps:
