@@ -1,5 +1,5 @@
 # COB - Discord Bot
-> A WIP made by roc.py for the Cave of Chaos Discord server
+> A WIP made by roc.py for the Cave of Chaos Discord server, contributions welcome!
 > Join here @ https://discord.gg/g4fHqnSNr2
 
 ## Setup
@@ -9,7 +9,7 @@ If you would like to use this bot for yourself, follow these steps:
 
 2. **Set up a bot** in the [Discord Developer Portal](https://discord.com/developers/applications).
 
-3. Go to the bot page of your app and **get the bot's token** - also enable all Privilaged Gateway Intents.
+3. Go to the bot page of your app and **get the bot's token** - also enable all Privileged Gateway Intents.
 
 4. **Clone** this GitHub repo:
 ```
