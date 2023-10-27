@@ -28,6 +28,7 @@ node ./scripts/sync-db
 6. **Update** the config.yaml file with your information.<br>
 7. **Run** the bot:
 ```bash
+node ./scripts/deploy-global.js
 node .
 ```
 
