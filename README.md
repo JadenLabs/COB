@@ -29,7 +29,9 @@ npm install
 }
 ``` 
 
-6. **Run** the bot:
+6. **Update** the config.yaml file with your information.
+
+7. **Run** the bot:
 ```bash
 node .
 ```
