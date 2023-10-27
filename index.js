@@ -14,6 +14,7 @@ const {
 } = require("discord.js");
 // Other packages
 const { logger } = require("./utils/roc-logger");
+const colors = require("colors");
 
 // Create a new client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -61,7 +62,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
 
     try {
+		logger("Bot", "Command", "Info", `Running ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
         await command.execute(interaction);
+		logger("Bot", "Command", "Info", `Running ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
     } catch (error) {
         console.error(error);
         if (interaction.replied || interaction.deferred) {
