@@ -8,19 +8,19 @@ module.exports = {
         let severityMessage = "";
         switch (severity) {
             case "Info":
-                severityMessage = severity.grey;
+                severityMessage = colors.gray(severity);
                 break;
             case "Warn":
-                severityMessage = severity.yellow;
+                severityMessage = colors.yellow(severity);
                 break;
             case "Error":
-                severityMessage = severity.red;
+                severityMessage = colors.red(severity);
                 break;
             case "Fatal":
-                severityMessage = severity.bgRed;
+                severityMessage = colors.bgRed(severity);
                 break;
             default:
-                severityMessage = severity.grey;
+                severityMessage = colors.gray(severity);
                 break;
         }
 
@@ -29,22 +29,23 @@ module.exports = {
         const date = now.toISOString();
 
         // Subprocess default
-        const subprocessMessage = subprocess ? `[${subprocess.cyan}]` : "";
+        const subprocessMessage =
+            subprocess !== false ? `[${colors.cyan(subprocess)}]` : "";
 
         // Method default
         let methodMessage = "";
         switch (method) {
             case "GET":
-                methodMessage = ` [${method.green}]`;
+                methodMessage = ` [${colors.green(method)}]`;
                 break;
             case "POST":
-                methodMessage = ` [${method.magenta}]`;
+                methodMessage = ` [${colors.magenta(method)}]`;
                 break;
             case "PUT":
-                methodMessage = ` [${method.yellow}]`;
+                methodMessage = ` [${colors.yellow(method)}]`;
                 break;
             case "DELETE":
-                methodMessage = ` [${method.red}]`;
+                methodMessage = ` [${colors.red(method)}]`;
                 break;
             default:
                 methodMessage = "";
@@ -56,7 +57,9 @@ module.exports = {
 
         // Return
         return console.log(
-            `[${app.blue}] ${subprocessMessage} [${date.grey}] [${severityMessage}]${methodMessage}${messageMessage}`
+            `[${colors.blue(app)}] ${subprocessMessage} [${colors.grey(
+                date
+            )}] [${severityMessage}]${methodMessage}${messageMessage}`
         );
     },
 };
