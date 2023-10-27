@@ -1,0 +1,9 @@
+Embed footer:
+.setFooter({
+    text: `Requested by: ${interaction.user.tag}`,
+    iconURL: `${interaction.user.displayAvatarURL({
+        format: "png",
+        dynamic: true,
+        size: 1024,
+    })}`,
+});
