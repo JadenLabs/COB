@@ -18,6 +18,7 @@ const colors = require("colors");
 
 // Create a new client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+module.exports = client;
 
 // Command Collection
 client.commands = new Collection();
@@ -48,74 +49,19 @@ for (const folder of commandFolders) {
     }
 }
 
-// Handle interactions
-client.on(Events.InteractionCreate, async (interaction) => {
-    if (!interaction.isChatInputCommand()) return;
+// Load and handle events
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
-    const command = interaction.client.commands.get(interaction.commandName);
-
-    if (!command) {
-        console.error(
-            `No command matching ${interaction.commandName} was found.`
-        );
-        return;
-    }
-
-    try {
-		logger("Bot", "Command", "Info", `Running ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
-        await command.execute(interaction);
-		logger("Bot", "Command", "Info", `Ran ${colors.magenta(interaction.commandName)} for ${colors.magenta(interaction.user.username)}.`);
-    } catch (error) {
-        console.error(error);
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({
-                content: "There was an error while executing this command!",
-                ephemeral: true,
-            });
-        } else {
-            await interaction.reply({
-                content: "There was an error while executing this command!",
-                ephemeral: true,
-            });
-        }
-    }
-});
-
-// When the client is ready, run this code (only once)
-client.once(Events.ClientReady, (c) => {
-    logger("Bot", "Login", "Info", `Logged in as ${c.user.tag.magenta}`);
-});
-
-// Status change function
-let listIndex = 0;
-function updateBotStatus() {
-    const statusList = config.statusMessages;
-    const name = statusList[listIndex];
-    const length = statusList.length;
-
-    client.user.setPresence({
-        activities: [
-            {
-                name: name,
-                type: ActivityType.Watching,
-            },
-        ],
-        status: config.statusType,
-    });
-
-    listIndex += 1;
-    if (listIndex === length) {
-        listIndex = 0;
-    }
+for (const file of eventFiles) {
+	const filePath = path.join(eventsPath, file);
+	const event = require(filePath);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
 }
-
-// On ready
-client.on("ready", () => {
-    updateBotStatus(); // Call this function when the bot is ready.
-
-    // Set up an interval to change the status.
-    setInterval(updateBotStatus, 5000);
-});
 
 // Log in to Discord with your client's token
 client.login(token);
