@@ -12,11 +12,12 @@ If you would like to use this bot for yourself, follow these steps:
 2. **Set up a bot** in the [Discord Developer Portal](https://discord.com/developers/applications).<br>
 3. Go to the bot page of your app and **get the bot's token** - also enable all Privileged Gateway Intents.
 
-4. **Clone** this GitHub repo, **Change Directory**, and **Install** packages:
+4. **Clone** this GitHub repo, **Change Directory**, **Install** packages, and **Initialize** the database:
 ```bash
 git clone https://github.com/JadenLabs/COB.git
 cd COB
 npm install
+node ./scripts/sync-db
 ```
 5. **Create** a token.js file:
 ```json
