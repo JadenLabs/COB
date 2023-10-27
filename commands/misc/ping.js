@@ -9,19 +9,19 @@ module.exports = {
         const latency = interaction.createdTimestamp - Date.now();
 
         const pingEmbed = new EmbedBuilder()
-            .setColor(config.colors.invis)
+            .setColor(config.colors.primary)
             .setDescription(
                 `### Pong! 🏓\n\
 				> Client latency: ${latency}ms`
             )
-			.setFooter({
-				text: `Requested by: ${interaction.user.tag}`,
-				iconURL: `${interaction.user.displayAvatarURL({
-					format: "png",
-					dynamic: true,
-					size: 1024,
-				})}`,
-			});;
+            .setFooter({
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: `${interaction.user.displayAvatarURL({
+                    format: "png",
+                    dynamic: true,
+                    size: 1024,
+                })}`,
+            });
 
         await interaction.reply({ embeds: [pingEmbed], ephemeral: true });
     },
