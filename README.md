@@ -37,7 +37,7 @@ node .
 ```
 
 #### Inviting
-To invite your bot, copy the following url into your browser after filling in the bot's id:
+To invite your bot to your server, copy the following url into your browser after filling in the bot's id:
 ```
 https://discord.com/api/oauth2/authorize?client_id=<BOT-ID>&permissions=1634734566647&scope=bot%20applications.commands
 ```
