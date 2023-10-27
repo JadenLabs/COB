@@ -11,9 +11,10 @@
 # ──────────────────────────────────────────────────
 # Status / Presence
 # ──────────────────────────────────────────────────
-# The status cycles through this list
 statusType: "online"
+# The status cycles through this list
 statusMessages:
+    # Going for an animation here
     - "─ CORN ───"
     - "─── CORN ─"
     - "───── CORN"
