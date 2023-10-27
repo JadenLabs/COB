@@ -3,6 +3,7 @@ An experimental bot where you can contribute whatever you'd like.
 
 **Links**:
 > [Invite](https://discord.com/api/oauth2/authorize?client_id=1166951538086912101&permissions=1634734566647&scope=bot%20applications.commands)
+
 > [Server](https://discord.gg/tw6m7hd4xV)
 
 ## Setup
