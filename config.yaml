@@ -33,3 +33,8 @@ statusMessages:
 # ──────────────────────────────────────────────────
 colors:
     invis: "#2b2d31"
+    # Using https://colordesigner.io/#000137-29003F-79003D-D04D14-F89801
+    primary: "#79003D"
+    secondary: "#29003F"
+    accent: "#F89801"
+
