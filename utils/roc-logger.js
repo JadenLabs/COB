@@ -3,7 +3,7 @@ const colors = require("colors");
 
 // Exports
 module.exports = {
-    async logger(app, subprocess, severity, method, message) {
+    async logger(app, subprocess, severity, message) {
         // Severity
         let severityMessage = "";
         switch (severity) {
@@ -32,26 +32,6 @@ module.exports = {
         const subprocessMessage =
             subprocess !== false ? `[${colors.cyan(subprocess)}]` : "";
 
-        // Method default
-        let methodMessage = "";
-        switch (method) {
-            case "GET":
-                methodMessage = ` [${colors.green(method)}]`;
-                break;
-            case "POST":
-                methodMessage = ` [${colors.magenta(method)}]`;
-                break;
-            case "PUT":
-                methodMessage = ` [${colors.yellow(method)}]`;
-                break;
-            case "DELETE":
-                methodMessage = ` [${colors.red(method)}]`;
-                break;
-            default:
-                methodMessage = "";
-                break;
-        }
-
         // Message default
         const messageMessage = message ? `: ${message}` : "";
 
@@ -59,7 +39,7 @@ module.exports = {
         return console.log(
             `[${colors.blue(app)}] ${subprocessMessage} [${colors.grey(
                 date
-            )}] [${severityMessage}]${methodMessage}${messageMessage}`
+            )}] [${severityMessage}]${messageMessage}`
         );
     },
 };

@@ -20,7 +20,6 @@ client.once(Events.ClientReady, (c) => {
         "Bot",
         "Login",
         "Info",
-        null,
         `Logged in as ${c.user.tag.magenta}`
     )
 });
