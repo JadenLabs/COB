@@ -14,7 +14,7 @@
 # The status cycles through this list
 statusType: "online"
 statusMessages:
-    - "- CORN ---"
-    - "-- CORN --"
-    - "--- CORN -"
-    - "-- CORN --"
+    - "─ CORN ───"
+    - "── CORN ──"
+    - "─── CORN ─"
+    - "── CORN ──"
