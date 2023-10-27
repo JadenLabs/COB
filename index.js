@@ -41,7 +41,7 @@ for (const folder of commandFolders) {
                 "Bot",
                 "C-Loader",
                 "Warn",
-                `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+                `The command at ${filePath} is missing a required "data" or "execute" property.`
             );
         }
     }
