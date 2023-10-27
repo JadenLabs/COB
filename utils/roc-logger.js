@@ -3,7 +3,7 @@ const colors = require("colors");
 
 // Exports
 module.exports = {
-    // Log messages to console
+    // Logs messages to console
     async logger(app, subprocess, severity, message) {
         // Severity
         let severityMessage = "";
