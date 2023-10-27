@@ -8,6 +8,8 @@ const {
     GatewayIntentBits,
     ActivityType,
 } = require("discord.js");
+// Other packages
+const { logger } = require("./utils/roc-logger");
 
 // Create a new client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -20,7 +22,9 @@ client.once(Events.ClientReady, (c) => {
 // Status change function
 let listIndex = 0;
 function updateBotStatus() {
-    const name = config.status[listIndex];
+    const statusList = config.statusMessages;
+    const name = statusList[listIndex];
+    const length = statusList.length;
 
     client.user.setPresence({
         activities: [
@@ -29,11 +33,11 @@ function updateBotStatus() {
                 type: ActivityType.Watching,
             },
         ],
-        status: "online",
+        status: config.statusType,
     });
 
     listIndex += 1;
-    if (listIndex === 4) {
+    if (listIndex === length) {
         listIndex = 0;
     }
 }
@@ -43,7 +47,7 @@ client.on("ready", () => {
     updateBotStatus(); // Call this function when the bot is ready.
 
     // Set up an interval to ping the API every 15 seconds (15,000 milliseconds).
-    setInterval(updateBotStatus, 5000);
+    setInterval(updateBotStatus, 15000);
 });
 
 // Log in to Discord with your client's token
