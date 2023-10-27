@@ -6,6 +6,11 @@ const WelcomeSettings = sequelize.define("welcomeSetting", {
         type: Sequelize.STRING,
         primaryKey: true,
     },
+    enabled: {
+        type: Sequelize.STRING,
+        required: false,
+        defaultValue: false,
+    },
     welcomeChannel: {
         type: Sequelize.STRING,
         required: false,
