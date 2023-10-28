@@ -25,18 +25,18 @@ module.exports = {
                 "Bot",
                 "Command",
                 "Info",
-                `Running ${colors.magenta(
+                `Running ${colors.yellow(
                     interaction.commandName
-                )} for ${colors.magenta(interaction.user.username)}.`
+                )} for ${colors.yellow(interaction.user.username)} | ${colors.yellow(interaction.guild.name)}`
             );
             await command.execute(interaction);
             logger(
                 "Bot",
                 "Command",
                 "Info",
-                `Ran ${colors.magenta(
+                `Ran ${colors.yellow(
                     interaction.commandName
-                )} for ${colors.magenta(interaction.user.username)}.`
+                )} for ${colors.yellow(interaction.user.username)} | ${colors.yellow(interaction.guild.name)}`
             );
         } catch (error) {
             console.error(error);
