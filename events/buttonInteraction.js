@@ -30,6 +30,12 @@ module.exports = {
                 welcomeSettings.enabled === "1"
                     ? lang.E.greenTick
                     : lang.E.redCross;
+            const pingChannel = welcomeSettings.pingChannel
+                ? `<#${welcomeSettings.pingChannel}>`
+                : "None";
+            const welcomeRole = welcomeSettings.welcomeRole
+                ? `<@&${welcomeSettings.welcomeRole}>`
+                : "None";
 
             // Embed
             const welcomePage = new EmbedBuilder()
@@ -46,10 +52,12 @@ module.exports = {
             **Status**\n\
             > Enabled:\n\
             > ${lang.E.reply} ${welcomeEnabledEmoji} \`${welcomeEnabled}\`\n\
-            > Channel:\n\
+            > Welcome Channel:\n\
             > ${lang.E.reply} <#${welcomeSettings.welcomeChannel}>\n\
-            > Role:\n\
-            > ${lang.E.reply} <@&${welcomeSettings.welcomeRole}>`
+            > Ping Channel:\n\
+            > ${lang.E.reply} ${pingChannel}
+            > Welcome Role:\n\
+            > ${lang.E.reply} ${welcomeRole}`
                 )
                 .setFooter({
                     text: `Requested by: ${interaction.user.tag}`,
