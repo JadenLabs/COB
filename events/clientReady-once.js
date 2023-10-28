@@ -10,7 +10,7 @@ module.exports = {
             "Bot",
             "Login",
             "Info",
-            `Logged in as ${client.user.tag.magenta}`
+            `Logged in as ${client.user.tag.yellow}`
         );
     },
 };
