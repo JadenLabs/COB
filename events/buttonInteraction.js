@@ -46,6 +46,8 @@ module.exports = {
             **Commands**\n\
             > Welcome Channel:\n\
             > ${lang.E.reply} </set-welcome-channel:1167548439324803286>\n\
+            > Ping Channel:\n\
+            > ${lang.E.reply} </set-ping-channel:1167943532271644734>\n\
             > Welcome Role:\n\
             > ${lang.E.reply} </set-welcome-role:1167548439324803287>\n\
 
