@@ -31,7 +31,7 @@ module.exports = {
         // Make front page embed
         const frontEmbed = new EmbedBuilder()
             .setColor(config.colors.secondary)
-            .setTitle(`${interaction.guild.name} Settings`)
+            .setTitle(`📖 | Settings`)
             .setDescription(
                 `Use the buttons below to navigate this server's bot settings.\n\n\
             **Status**\n\
