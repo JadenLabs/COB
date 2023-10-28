@@ -36,7 +36,7 @@ module.exports = {
                 .setColor(config.colors.secondary)
                 .setTitle(`☕ | Welcome Settings`)
                 .setDescription(
-                    `Use the button below to enable or disable this module.\n\n\
+                    `Use the buttons below to enable or disable this module.\n\n\
             **Status**\n\
             > Enabled:\n\
             > ${lang.E.reply} ${welcomeEnabledEmoji} \`${welcomeEnabled}\`\n\
