@@ -39,4 +39,6 @@ colors:
     primary: "#79003D"
     secondary: "#29003F"
     accent: "#F89801"
+    success: "#1ABC9C"
+    error: "#E74C3C"
 
