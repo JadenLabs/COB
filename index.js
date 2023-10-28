@@ -17,7 +17,7 @@ const { logger } = require("./utils/roc-logger");
 const colors = require("colors");
 
 // Create a new client
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 module.exports = client;
 
 // Command Collection
