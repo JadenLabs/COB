@@ -14,15 +14,22 @@ module.exports = {
             option
                 .setName("role")
                 .setDescription("The role to set as the welcome role")
-                .setRequired(true)
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     async execute(interaction) {
-        const role = await interaction.options.getRole("role");
-
         const [settings, created] = await WelcomeSettings.findOrCreate({
             where: { guildId: interaction.guild.id },
         });
+
+        const role = (await interaction.options.getRole("role")) ?? false;
+        if (!role) {
+            settings.update({ welcomeRole: null });
+
+            return interaction.reply({
+                content: "The welcome role has been disabled.",
+                ephemeral: true,
+            });
+        }
 
         await settings.update({ welcomeRole: role.id, enabled: true });
 
