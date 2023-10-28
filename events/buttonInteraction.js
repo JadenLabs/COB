@@ -37,6 +37,12 @@ module.exports = {
                 .setTitle(`☕ | Welcome Settings`)
                 .setDescription(
                     `Use the buttons below to enable or disable this module.\n\n\
+            **Commands**\n\
+            > Welcome Channel:\n\
+            > ${lang.E.reply} </set-welcome-channel:1167548439324803286>\n\
+            > Welcome Role:\n\
+            > ${lang.E.reply} </set-welcome-role:1167548439324803287>\n\
+
             **Status**\n\
             > Enabled:\n\
             > ${lang.E.reply} ${welcomeEnabledEmoji} \`${welcomeEnabled}\`\n\
