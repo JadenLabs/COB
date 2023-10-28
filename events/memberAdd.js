@@ -32,14 +32,7 @@ module.exports = {
             })
             .setTimestamp()
             .setColor(config.colors.primary)
-            .setTitle(`Welcome to ${serverName}!`)
-            .addFields([
-                {
-                    name: "placeholder",
-                    value: `> <placeholder>`,
-                    inline: true,
-                },
-            ]);
+            .setTitle(`Welcome to ${serverName}!`);
 
         if (icon) {
             embed.setAuthor({
@@ -61,7 +54,30 @@ module.exports = {
                 })}`,
             });
         }
-        const channel = await member.guild.channels.fetch(await welcomeSettings.welcomeChannel);
-        return channel.send({ content: `<@${member.id}>`, embeds: [embed] })
+        const channel = await member.guild.channels.fetch(
+            await welcomeSettings.welcomeChannel
+        );
+        await channel.send({ content: `<@${member.id}>`, embeds: [embed] });
+
+        if (welcomeSettings.pingChannel) {
+            let smallEmbed = new EmbedBuilder()
+                .setColor(config.colors.success)
+                .setDescription(`*<@${member.id}> has slid into the server*`);
+
+            const content = welcomeSettings.welcomeRole
+                ? `<@&${welcomeSettings.welcomeRole}>`
+                : "";
+
+            const pingChannel = await member.guild.channels.fetch(
+                welcomeSettings.pingChannel
+            );
+
+            if (!pingChannel) return;
+
+            await pingChannel.send({
+                content: content,
+                embeds: [smallEmbed],
+            });
+        }
     },
 };
