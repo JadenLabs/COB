@@ -15,6 +15,10 @@ const WelcomeSettings = sequelize.define("welcomeSetting", {
         type: Sequelize.STRING,
         required: false,
     },
+    pingChannel: {
+        type: Sequelize.STRING,
+        required: false,
+    },
     welcomeRole: {
         type: Sequelize.STRING,
         required: false,
