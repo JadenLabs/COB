@@ -1,6 +1,6 @@
-const { logger } = require("../utils/roc-logger");
+const { logger } = require("../../utils/roc-logger");
 const config = require("../../utils/config");
-const lang = require("../utils/lang");
+const lang = require("../../utils/lang");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
