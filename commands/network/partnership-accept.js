@@ -162,8 +162,18 @@ module.exports = {
             .setDescription(
                 `A partnership has been established!\n> ${guild1.name}\n> ${guild2}\n\nPartnership ID: ${partnership.partnershipId}`
             );
+        const guild1Ad = new EmbedBuilder()
+            .setColor(config.colors.primary)
+            .setTitle(`${guild1.name} Ad`)
+            .setDescription(`${guild1Settings.serverAd}`)
+            .setThumbnail(await guild1.iconURL());
+        const guild2Ad = new EmbedBuilder()
+            .setColor(config.colors.primary)
+            .setTitle(`${guild1.name} Ad`)
+            .setDescription(`${guild2Settings.serverAd}`)
+            .setThumbnail(await guild2.iconURL());
 
-        await guild1Channel.send({ embeds: [embed] });
-        await guild2Channel.send({ embeds: [embed] });
+        await guild1Channel.send({ embeds: [embed, guild2Ad] });
+        await guild2Channel.send({ embeds: [embed, guild1Ad] });
     },
 };
