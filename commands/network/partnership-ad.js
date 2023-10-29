@@ -1,14 +1,15 @@
 const { logger } = require("../../utils/roc-logger");
 const config = require("../../utils/config");
 const lang = require("../../utils/lang");
-const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+const { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const NetworkSettings = require("../../models/networkSettings");
 const ReplyListener = require("../../models/replyListener");
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("partnership-ad")
-        .setDescription("Set or view this server's ad"),
+        .setDescription("Set or view this server's ad")
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     async execute(interaction) {
         // Get settings
         const [networkSettings, networkCreated] =
