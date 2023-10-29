@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../utils/database");
 
-const Partnerships = sequelize.define("partnership", {
-    partnershipId: {
+const OutgoingRequests = sequelize.define("outgoingRequest", {
+    requestID: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -14,7 +14,7 @@ const Partnerships = sequelize.define("partnership", {
     guild2: {
         type: Sequelize.STRING,
         required: true,
-    },
+    }
 });
 
-module.exports = Partnerships;
+module.exports = OutgoingRequests;
