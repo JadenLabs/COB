@@ -14,7 +14,12 @@ const NetworkSettings = sequelize.define("networkSetting", {
     notifsChannel: {
         type: Sequelize.STRING,
         required: false,
-        defaultValue: false,
+        defaultValue: null,
+    },
+    serverAd: {
+        type: Sequelize.STRING,
+        required: false,
+        defaultValue: null,
     },
 });
 
