@@ -45,7 +45,15 @@ module.exports = {
             \n\
             **Stats**\n\
             > Number of Partnerships:\n\
-            > ${lang.E.reply} ${numberOfPartnerships}`);
+            > ${lang.E.reply} ${numberOfPartnerships}`)
+            .setFooter({
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: `${interaction.user.displayAvatarURL({
+                    format: "png",
+                    dynamic: true,
+                    size: 1024,
+                })}`,
+            });
 
         await interaction.reply({ embeds: [embed] });
     },
