@@ -11,6 +11,11 @@ const NetworkSettings = sequelize.define("networkSetting", {
         required: false,
         defaultValue: false,
     },
+    notifsChannel: {
+        type: Sequelize.STRING,
+        required: false,
+        defaultValue: false,
+    },
 });
 
 module.exports = NetworkSettings;
