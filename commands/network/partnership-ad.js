@@ -1,7 +1,14 @@
 const { logger } = require("../../utils/roc-logger");
 const config = require("../../utils/config");
 const lang = require("../../utils/lang");
-const { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const {
+    ButtonStyle,
+    EmbedBuilder,
+    ButtonBuilder,
+    ActionRowBuilder,
+    SlashCommandBuilder,
+    PermissionFlagsBits,
+} = require("discord.js");
 const NetworkSettings = require("../../models/networkSettings");
 const ReplyListener = require("../../models/replyListener");
 
@@ -39,7 +46,25 @@ module.exports = {
                 })}`,
             });
 
-        const response = await interaction.reply({ embeds: [embed] });
+        // Make buttons
+        const serverAd = new ButtonBuilder()
+            .setCustomId("view_ad_button")
+            .setLabel("View Ad")
+            .setEmoji("📜")
+            .setStyle(ButtonStyle.Secondary);
+
+        // Make action row
+        const row = new ActionRowBuilder().addComponents(serverAd);
+
+        let components = [];
+        if (networkSettings.serverAd) {
+            components = [row];
+        }
+
+        const response = await interaction.reply({
+            embeds: [embed],
+            components: components,
+        });
         const responseMessage = await response.fetch();
 
         // Create listener
