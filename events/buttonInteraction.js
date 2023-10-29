@@ -155,6 +155,7 @@ module.exports = {
             const notifsChannel = networkSettings.notifsChannel
                 ? `<#${networkSettings.notifsChannel}>`
                 : "None";
+            const adSet = networkSettings.serverAd ? "Set" : "None";
 
             // Embed
             const welcomePage = new EmbedBuilder()
@@ -170,7 +171,9 @@ module.exports = {
         > Enabled:\n\
         > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\`\n\
         > Notifs Channel:\n\
-        > ${lang.E.reply} ${notifsChannel}`
+        > ${lang.E.reply} ${notifsChannel}\n\
+        > Server Ad:\n\
+        > ${lang.E.reply} ${adSet}`
                 )
                 .setFooter({
                     text: `Requested by: ${interaction.user.tag}`,
