@@ -153,8 +153,8 @@ module.exports = {
                     ? lang.E.greenTick
                     : lang.E.redCross;
             const notifsChannel = networkSettings.notifsChannel
-                    ? `<#${networkSettings.notifsChannel}>`
-                    : "None";
+                ? `<#${networkSettings.notifsChannel}>`
+                : "None";
 
             // Embed
             const welcomePage = new EmbedBuilder()
