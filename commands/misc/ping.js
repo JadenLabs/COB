@@ -6,7 +6,7 @@ module.exports = {
         .setName("ping")
         .setDescription("Replies with Pong!"),
     async execute(interaction) {
-        const latency = interaction.createdTimestamp - Date.now();
+        const latency = Date.now() -interaction.createdTimestamp;
 
         const pingEmbed = new EmbedBuilder()
             .setColor(config.colors.primary)
