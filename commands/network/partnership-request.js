@@ -23,11 +23,17 @@ module.exports = {
             where: { guildId: interaction.guild.id },
         });
 
-        // Check if disabled
+        // Validate settings
         if (networkSettings.enabled === false) {
             return interaction.reply({
                 content:
                     "This server's networking module has not been enabled; if you're an admin, use /settings to enable it.",
+                ephemeral: true,
+            });
+        } else if (!networkSettings.serverAd) {
+            return interaction.reply({
+                content:
+                    "This server does not have an ad set up.",
                 ephemeral: true,
             });
         }
