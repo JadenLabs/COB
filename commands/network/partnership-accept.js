@@ -1,7 +1,11 @@
 const { logger } = require("../../utils/roc-logger");
 const config = require("../../utils/config");
 const lang = require("../../utils/lang");
-const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+const {
+    EmbedBuilder,
+    SlashCommandBuilder,
+    PermissionFlagsBits,
+} = require("discord.js");
 const OutgoingRequests = require("../../models/outgoingRequests");
 const NetworkSettings = require("../../models/networkSettings");
 const Partnerships = require("../../models/partnerships");
