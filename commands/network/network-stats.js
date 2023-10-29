@@ -38,7 +38,7 @@ module.exports = {
         const numberOfPartnerships = partnerships.length;
 
         // Strings
-        const adSet = networkSettings.serverAd ? "Set" : "None";
+        const adSet = networkSettings.serverAd !== null ? "Set" : "None";
 
         // Embed
         const embed = new EmbedBuilder()
