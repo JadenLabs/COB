@@ -9,6 +9,7 @@ const {
     ActionRowBuilder,
 } = require("discord.js");
 const WelcomeSettings = require("../models/welcomeSettings");
+const NetworkSettings = require("../models/networkSettings");
 
 module.exports = {
     name: Events.InteractionCreate,
@@ -92,6 +93,7 @@ module.exports = {
             // Action row
             const row = new ActionRowBuilder().addComponents(enable, disable);
 
+            // Response
             return interaction.reply({
                 embeds: [welcomePage],
                 components: [row],
@@ -126,6 +128,108 @@ module.exports = {
 
             if (welcomeSettings.enabled === "1") {
                 await welcomeSettings.update({ enabled: false });
+
+                return interaction.reply({
+                    content: `${lang.E.redCross} The welcome module has been disabled!`,
+                    ephemeral: true,
+                });
+            } else {
+                return interaction.reply({
+                    content: `This module has already been disabled!`,
+                    ephemeral: true,
+                });
+            }
+        } else if (interaction.customId === "network_settings_button") {
+            const [networkSettings, networkCreated] =
+                await NetworkSettings.findOrCreate({
+                    where: { guildId: interaction.guild.id },
+                });
+
+            // Strings
+            const networkEnabled =
+                networkSettings.enabled === true ? "Enabled" : "Disabled";
+            const networkEnabledEmoji =
+                networkSettings.enabled === true
+                    ? lang.E.greenTick
+                    : lang.E.redCross;
+
+            // Embed
+            const welcomePage = new EmbedBuilder()
+                .setColor(config.colors.secondary)
+                .setTitle(`💻 | Network Settings`)
+                .setDescription(
+                    `Use the buttons below to enable or disable this module.\n\
+
+        **Status**\n\
+        > Enabled:\n\
+        > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\``
+                )
+                .setFooter({
+                    text: `Requested by: ${interaction.user.tag}`,
+                    iconURL: `${interaction.user.displayAvatarURL({
+                        format: "png",
+                        dynamic: true,
+                        size: 1024,
+                    })}`,
+                });
+
+            // Buttons
+            let enable = new ButtonBuilder()
+                .setCustomId("enable_network_button")
+                .setLabel("Enable")
+                .setStyle(ButtonStyle.Success);
+
+            let disable = new ButtonBuilder()
+                .setCustomId("disable_network_button")
+                .setLabel("Disable")
+                .setStyle(ButtonStyle.Danger);
+
+            if (networkSettings.enabled === true) {
+                enable.setDisabled(true);
+                disable.setDisabled(false);
+            } else {
+                enable.setDisabled(false);
+                disable.setDisabled(true);
+            }
+
+            // Action row
+            const row = new ActionRowBuilder().addComponents(enable, disable);
+
+            // Response
+            return interaction.reply({
+                embeds: [welcomePage],
+                components: [row],
+                ephemeral: true,
+            });
+        } else if (interaction.customId === "enable_network_button") {
+            // Get DB
+            const [networkSettings, networkCreated] =
+                await NetworkSettings.findOrCreate({
+                    where: { guildId: interaction.guild.id },
+                });
+
+            if (networkSettings.enabled === true) {
+                return interaction.reply({
+                    content: `This module has already been enabled!`,
+                    ephemeral: true,
+                });
+            } else {
+                await networkSettings.update({ enabled: true });
+
+                return interaction.reply({
+                    content: `${lang.E.greenTick} The welcome module has been enabled!`,
+                    ephemeral: true,
+                });
+            }
+        } else if (interaction.customId === "disable_network_button") {
+            // Get DB
+            const [networkSettings, networkCreated] =
+                await NetworkSettings.findOrCreate({
+                    where: { guildId: interaction.guild.id },
+                });
+
+            if (networkSettings.enabled === true) {
+                await networkSettings.update({ enabled: false });
 
                 return interaction.reply({
                     content: `${lang.E.redCross} The welcome module has been disabled!`,
