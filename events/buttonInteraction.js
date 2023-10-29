@@ -252,6 +252,40 @@ module.exports = {
                     ephemeral: true,
                 });
             }
+        } else if (interaction.customId === "view_ad_button") {
+            // Get DB
+            const networkSettings = await NetworkSettings.findOne({
+                where: { guildId: interaction.guild.id },
+            });
+
+            // Validate
+            if (!networkSettings) {
+                return interaction.reply({
+                    content: `This server's settings could not be found.`,
+                    ephemeral: true,
+                });
+            }
+
+            // Embed
+            const embed = new EmbedBuilder()
+                .setColor(config.colors.primary)
+                .setTitle(`${interaction.guild.name} Ad`)
+                .setDescription(networkSettings.serverAd)
+                .setThumbnail(await interaction.guild.iconURL())
+                .setFooter({
+                    text: `Requested by: ${interaction.user.tag}`,
+                    iconURL: `${interaction.user.displayAvatarURL({
+                        format: "png",
+                        dynamic: true,
+                        size: 1024,
+                    })}`,
+                });
+
+            // Respond
+            await interaction.reply({
+                embeds: [embed],
+                ephemeral: true,
+            });
         }
     },
 };
