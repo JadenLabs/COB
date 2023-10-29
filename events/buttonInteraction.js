@@ -166,6 +166,8 @@ module.exports = {
         **Commands**\n\
         > Notifs Channel:\n\
         > ${lang.E.reply} </set-partnership-notifs:1168055489100267631>\n\
+        > Server Ad:\n\
+        > ${lang.E.reply} </partnership-ad:1168297132076322896>\n\
 
         **Status**\n\
         > Enabled:\n\
@@ -173,7 +175,7 @@ module.exports = {
         > Notifs Channel:\n\
         > ${lang.E.reply} ${notifsChannel}\n\
         > Server Ad:\n\
-        > ${lang.E.reply} ${adSet}`
+        > ${lang.E.reply} \`${adSet}\``
                 )
                 .setFooter({
                     text: `Requested by: ${interaction.user.tag}`,
