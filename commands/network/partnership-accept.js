@@ -15,7 +15,8 @@ module.exports = {
                 .setName("request-id")
                 .setDescription("The request's id")
                 .setRequired(true)
-        ),
+        )
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     async execute(interaction) {
         // NetworkSettings Database
         const [networkSettings, created] = await NetworkSettings.findOrCreate({
