@@ -2,6 +2,8 @@
 const Model = require("./models/model"); 
 */
 const WelcomeSettings = require("../models/welcomeSettings");
+const NetworkSettings = require("../models/networkSettings");
+const Partnerships = require("../models/partnerships");
 
 // Use alter to add to existing data
 // Use force to wipe everything
@@ -9,3 +11,5 @@ const WelcomeSettings = require("../models/welcomeSettings");
 Model.sync({ alter: true });
 */
 WelcomeSettings.sync({ alter: true });
+NetworkSettings.sync({ alter: true });
+Partnerships.sync({ alter: true });
