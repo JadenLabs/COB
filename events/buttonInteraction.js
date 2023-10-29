@@ -225,7 +225,7 @@ module.exports = {
                 await networkSettings.update({ enabled: true });
 
                 return interaction.reply({
-                    content: `${lang.E.greenTick} The welcome module has been enabled!`,
+                    content: `${lang.E.greenTick} The network module has been enabled!`,
                     ephemeral: true,
                 });
             }
@@ -240,7 +240,7 @@ module.exports = {
                 await networkSettings.update({ enabled: false });
 
                 return interaction.reply({
-                    content: `${lang.E.redCross} The welcome module has been disabled!`,
+                    content: `${lang.E.redCross} The network module has been disabled!`,
                     ephemeral: true,
                 });
             } else {
