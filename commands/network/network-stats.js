@@ -37,15 +37,22 @@ module.exports = {
 
         const numberOfPartnerships = partnerships.length;
 
+        // Strings
+        const adSet = networkSettings.serverAd ? "Set" : "None";
+
         // Embed
         const embed = new EmbedBuilder()
             .setColor(config.colors.primary)
             .setTitle("Networking Stats")
-            .setDescription(`This server's networking stats\n\
+            .setDescription(
+                `This server's networking stats\n\
             \n\
             **Stats**\n\
             > Number of Partnerships:\n\
-            > ${lang.E.reply} ${numberOfPartnerships}`)
+            > ${lang.E.reply} ${numberOfPartnerships}\n\
+            > Server Ad:\n\
+            > ${lang.E.reply} ${adSet}`
+            )
             .setFooter({
                 text: `Requested by: ${interaction.user.tag}`,
                 iconURL: `${interaction.user.displayAvatarURL({
