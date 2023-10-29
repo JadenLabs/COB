@@ -1,13 +1,8 @@
 const { logger } = require("../../utils/roc-logger");
 const config = require("../../utils/config");
 const lang = require("../../utils/lang");
-const {
-    ButtonStyle,
-    EmbedBuilder,
-    ButtonBuilder,
-    ActionRowBuilder,
-    SlashCommandBuilder,
-} = require("discord.js");
+const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+const OutgoingRequests = require("../../models/outgoingRequests");
 const NetworkSettings = require("../../models/networkSettings");
 const Partnerships = require("../../models/partnerships");
 
@@ -95,7 +90,9 @@ module.exports = {
         let awayChannel;
         try {
             // Get away guild notifs channel
-            awayChannel = await interaction.client.channels.fetch(awayChannelId);
+            awayChannel = await interaction.client.channels.fetch(
+                awayChannelId
+            );
         } catch (e) {
             return interaction.reply({
                 content: "That server's notifs channel does not exist.",
@@ -103,13 +100,30 @@ module.exports = {
             });
         }
 
+        // Create outgoing request record
+        // Sort id
+        let guild1;
+        let guild2;
+        if (parseInt(homeGuildId) > parseInt(awayGuildId)) {
+            guild1 = homeGuildId;
+            guild2 = awayGuildId;
+        } else {
+            guild1 = awayGuildId;
+            guild2 = homeGuildId;
+        }
+
+        const request = await OutgoingRequests.create({
+            guild1: guild1,
+            guild2: guild2,
+        });
+
         // Send request message in away channel
         // Set up embed
         const reqEmbed = new EmbedBuilder()
             .setColor(config.colors.primary)
             .setTitle("Partnership Request")
             .setDescription(
-                `${homeGuild.name} is wishing to partner with you! Do you accept?`
+                `${homeGuild.name} is wishing to partner with you! Do you accept?\n> Request ID: \`${request.requestID}\``
             )
             .setFooter({
                 text: `Requested by: ${interaction.user.tag}`,
@@ -120,24 +134,9 @@ module.exports = {
                 })}`,
             });
 
-        // Buttons
-        let accept = new ButtonBuilder()
-            .setCustomId("accept_request_button")
-            .setLabel("Accept")
-            .setStyle(ButtonStyle.Success);
-
-        let decline = new ButtonBuilder()
-            .setCustomId("decline_request_button")
-            .setLabel("Decline")
-            .setStyle(ButtonStyle.Danger);
-        
-        // Action row
-        const row = new ActionRowBuilder().addComponents(accept, decline);
-
         // Send message
         const awayMessage = await awayChannel.send({
             embeds: [reqEmbed],
-            components: [row],
         });
 
         // Embed
