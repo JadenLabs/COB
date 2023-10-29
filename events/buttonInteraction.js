@@ -152,6 +152,9 @@ module.exports = {
                 networkSettings.enabled === true
                     ? lang.E.greenTick
                     : lang.E.redCross;
+            const notifsChannel = networkSettings.notifsChannel
+                    ? `<#${networkSettings.notifsChannel}>`
+                    : "None";
 
             // Embed
             const welcomePage = new EmbedBuilder()
@@ -159,10 +162,15 @@ module.exports = {
                 .setTitle(`💻 | Network Settings`)
                 .setDescription(
                     `Use the buttons below to enable or disable this module.\n\
+        **Commands**\n\
+        > Notifs Channel:\n\
+        > ${lang.E.reply} </set-partnership-notifs:1168055489100267631>\n\
 
         **Status**\n\
         > Enabled:\n\
-        > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\``
+        > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\`\n\
+        > Notifs Channel:\n\
+        > ${lang.E.reply} ${notifsChannel}`
                 )
                 .setFooter({
                     text: `Requested by: ${interaction.user.tag}`,
