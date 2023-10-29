@@ -15,7 +15,8 @@ module.exports = {
                 .setName("guild-id")
                 .setDescription("The guild to send a partnership request to")
                 .setRequired(true)
-        ),
+        )
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     async execute(interaction) {
         // NetworkSettings Database
         const [networkSettings, created] = await NetworkSettings.findOrCreate({
