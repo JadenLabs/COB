@@ -133,15 +133,39 @@ module.exports = {
             guild2Notif
         );
 
+        // Get partner channels
+        const guild1Partner = guild1Settings.partnersChannel;
+        const guild2Partner = guild2Settings.partnersChannel;
+
         // Validate
-        if (!guild1Channel) {
+        if (!guild1Partner) {
             return interaction.reply({
-                content: "ERROR: Guild 1's notif channel does not exist.",
+                content: "ERROR: Guild 1 does not have a set partners channel.",
                 ephemeral: true,
             });
-        } else if (!guild2Channel) {
+        } else if (!guild2Partner) {
             return interaction.reply({
-                content: "ERROR: Guild 2's notif channel does not exist.",
+                content: "ERROR: Guild 2 does not have a set partners channel.",
+                ephemeral: true,
+            });
+        }
+
+        const guild1PartnerChannel = await interaction.client.channels.fetch(
+            guild1Partner
+        );
+        const guild2PartnerChannel = await interaction.client.channels.fetch(
+            guild2Partner
+        );
+
+        // Validate
+        if (!guild1PartnerChannel) {
+            return interaction.reply({
+                content: "ERROR: Guild 1's partners channel does not exist.",
+                ephemeral: true,
+            });
+        } else if (!guild2PartnerChannel) {
+            return interaction.reply({
+                content: "ERROR: Guild 2's partners channel does not exist.",
                 ephemeral: true,
             });
         }
@@ -173,7 +197,10 @@ module.exports = {
             .setDescription(`${guild2Settings.serverAd}`)
             .setThumbnail(await guild2.iconURL());
 
-        await guild1Channel.send({ embeds: [embed, guild2Ad] });
-        await guild2Channel.send({ embeds: [embed, guild1Ad] });
+        await guild1Channel.send({ embeds: [embed] });
+        await guild2Channel.send({ embeds: [embed] });
+
+        await guild1PartnerChannel.send({ embeds: [guild2Ad] });
+        await guild2PartnerChannel.send({ embeds: [guild1Ad] });
     },
 };
