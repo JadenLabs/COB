@@ -155,6 +155,9 @@ module.exports = {
             const notifsChannel = networkSettings.notifsChannel
                 ? `<#${networkSettings.notifsChannel}>`
                 : "None";
+            const partnersChannel = networkSettings.partnersChannel
+                ? `<#${networkSettings.partnersChannel}>`
+                : "None";
             const adSet = networkSettings.serverAd ? "Set" : "None";
 
             // Embed
@@ -166,6 +169,8 @@ module.exports = {
         **Commands**\n\
         > Notifs Channel:\n\
         > ${lang.E.reply} </set-partnership-notifs:1168055489100267631>\n\
+        > Partners Channel:\n\
+        > ${lang.E.reply} </set-partnership-channel:1168419146824949800>\n\
         > Server Ad:\n\
         > ${lang.E.reply} </partnership-ad:1168297132076322896>\n\
 
@@ -174,6 +179,8 @@ module.exports = {
         > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\`\n\
         > Notifs Channel:\n\
         > ${lang.E.reply} ${notifsChannel}\n\
+        > Partners Channel:\n\
+        > ${lang.E.reply} ${partnersChannel}\n\
         > Server Ad:\n\
         > ${lang.E.reply} \`${adSet}\``
                 )
