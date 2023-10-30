@@ -12,13 +12,13 @@ const Partnerships = require("../../models/partnerships");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("set-partnership-channel")
-        .setDescription("Sets this server's partners channel")
+        .setName("set-partnership-notifs")
+        .setDescription("Sets this server's partnership notifs channel")
         .addChannelOption((option) =>
             option
                 .setName("channel")
                 .setDescription(
-                    "The channel to set for the partnership messages."
+                    "The channel to set as the request notifs channel"
                 )
                 .addChannelTypes(ChannelType.GuildText)
                 .setRequired(true)
@@ -43,13 +43,13 @@ module.exports = {
         const channel = await interaction.options.getChannel("channel");
 
         // Update DB
-        await networkSettings.update({ partnersChannel: channel.id });
+        await networkSettings.update({ notifsChannel: channel.id });
 
         // Embed
         const embed = new EmbedBuilder()
             .setColor(config.colors.secondary)
             .setTitle("Channel Set")
-            .setDescription(`Your partners channel has been set!\n> ${channel}`)
+            .setDescription(`Your notification channel has been set!\n> ${channel}`)
             .setFooter({
                 text: `Requested by: ${interaction.user.tag}`,
                 iconURL: `${interaction.user.displayAvatarURL({
