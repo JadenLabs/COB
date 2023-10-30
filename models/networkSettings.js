@@ -16,6 +16,11 @@ const NetworkSettings = sequelize.define("networkSetting", {
         required: false,
         defaultValue: null,
     },
+    partnersChannel: {
+        type: Sequelize.STRING,
+        required: false,
+        defaultValue: null,
+    },
     serverAd: {
         type: Sequelize.STRING,
         required: false,
