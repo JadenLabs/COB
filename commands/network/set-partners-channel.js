@@ -8,7 +8,6 @@ const {
     SlashCommandBuilder,
 } = require("discord.js");
 const NetworkSettings = require("../../models/networkSettings");
-const Partnerships = require("../../models/partnerships");
 
 module.exports = {
     data: new SlashCommandBuilder()
