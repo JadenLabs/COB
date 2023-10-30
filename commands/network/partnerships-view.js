@@ -30,6 +30,14 @@ module.exports = {
             },
         });
 
+        // If no partnerships, send a different embed
+        if (partnerships.length === 0) {
+            return interaction.reply({
+                content: "This server does not have any partnerships.",
+                ephemeral: true,
+            });
+        }
+
         // Map the partnerships to an array and collect non-interaction guild IDs
         const nonInteractionGuilds = [];
 
@@ -83,6 +91,6 @@ module.exports = {
             );
 
         // Respond
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed] });
     },
 };
