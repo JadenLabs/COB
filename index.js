@@ -15,6 +15,12 @@ const {
 // Other packages
 const { logger } = require("./utils/roc-logger");
 const colors = require("colors");
+const os = require("os");
+const { performance } = require('perf_hooks');
+
+// Perf
+const startTime = performance.now();
+const startUsage = process.cpuUsage();
 
 // Create a new client
 const client = new Client({
@@ -24,7 +30,9 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
     ],
 });
-module.exports = client;
+
+// Exports
+module.exports = { client, startUsage, startTime };
 
 // Command Collection
 client.commands = new Collection();
