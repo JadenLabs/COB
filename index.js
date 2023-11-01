@@ -32,7 +32,7 @@ const client = new Client({
 });
 
 // Exports
-module.exports = { client, startUsage, startTime, startTimeSec };
+module.exports = { client, startUsage, startTime };
 
 // Command Collection
 client.commands = new Collection();

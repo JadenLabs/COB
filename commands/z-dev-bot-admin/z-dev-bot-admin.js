@@ -6,7 +6,7 @@ const Admins = require("../../models/admins");
 const Bans = require("../../models/bans");
 const os = require("os");
 
-const { startUsage, startTime, startTimeSec } = require("../../index");
+const { startUsage, startTime } = require("../../index");
 
 module.exports = {
     data: new SlashCommandBuilder()
