@@ -6,6 +6,8 @@ const WelcomeSettings = require("../models/welcomeSettings");
 const NetworkSettings = require("../models/networkSettings");
 const ReplyListener = require("../models/replyListener");
 const Partnerships = require("../models/partnerships");
+const Admins = require("../models/admins");
+const Bans = require("../models/bans");
 
 // Use alter to add to existing data
 // Use force to wipe everything
@@ -17,3 +19,5 @@ WelcomeSettings.sync({ alter: true });
 NetworkSettings.sync({ alter: true });
 ReplyListener.sync({ alter: true });
 Partnerships.sync({ alter: true });
+Admins.sync({ alter: true });
+Bans.sync({ alter: true });
