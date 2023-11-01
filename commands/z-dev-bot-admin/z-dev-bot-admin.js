@@ -99,9 +99,32 @@ module.exports = {
         const user = (await interaction.options.getUser("user")) ?? null;
         const reason = (await interaction.options.getString("reason")) ?? null;
 
-        if (user && action === "ban" && reason) {
+        if (action === "servers") {
+            const guildsList = await Promise.all(
+                interaction.client.guilds.cache.map(async (guild) => {
+                    const owner = await guild.fetchOwner();
+
+                    return `${guild.name}\n\
+                    > ${lang.E.dot} Id: ${guild.id}\n\
+                    > ${lang.E.dot} Owner: ${owner.user.tag}`;
+                })
+            );
+
+            const guildsEmbed = new EmbedBuilder()
+                .setColor(config.colors.primary)
+                .setTitle("Servers List")
+                .setDescription(`${guildsList.join("\n\n")}`)
+                .setFooter({
+                    text: `Requested by: ${interaction.user.tag}`,
+                    iconURL: `${interaction.user.displayAvatarURL({
+                        format: "png",
+                        dynamic: true,
+                        size: 1024,
+                    })}`,
+                });
+
             return interaction.reply({
-                content: `${user.username} | ${action}`,
+                embeds: [guildsEmbed],
                 ephemeral: true,
             });
         } else {
