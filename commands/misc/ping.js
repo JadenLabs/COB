@@ -7,12 +7,13 @@ module.exports = {
         .setDescription("Replies with Pong!"),
     async execute(interaction) {
         const latency = Date.now() - interaction.createdTimestamp;
+        latencyAbs = Math.abs(latency)
 
         const pingEmbed = new EmbedBuilder()
             .setColor(config.colors.primary)
             .setDescription(
                 `### Pong! 🏓\n\
-				> Client latency: ${latency}ms`
+				> Client latency: ${latencyAbs}ms`
             )
             .setFooter({
                 text: `Requested by: ${interaction.user.tag}`,
