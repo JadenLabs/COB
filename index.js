@@ -16,7 +16,7 @@ const {
 const { logger } = require("./utils/roc-logger");
 const colors = require("colors");
 const os = require("os");
-const { performance } = require('perf_hooks');
+const { performance } = require("perf_hooks");
 
 // Perf
 const startTime = performance.now();
@@ -32,7 +32,7 @@ const client = new Client({
 });
 
 // Exports
-module.exports = { client, startUsage, startTime };
+module.exports = { client, startUsage, startTime, startTimeSec };
 
 // Command Collection
 client.commands = new Collection();

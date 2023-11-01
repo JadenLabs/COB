@@ -6,7 +6,7 @@ const Admins = require("../../models/admins");
 const Bans = require("../../models/bans");
 const os = require("os");
 
-const { startUsage, startTime } = require("../../index");
+const { startUsage, startTime, startTimeSec } = require("../../index");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -99,12 +99,12 @@ module.exports = {
         const user = (await interaction.options.getUser("user")) ?? null;
         const reason = (await interaction.options.getString("reason")) ?? null;
 
-        if (action === "servers") {
+        if (action === "servers" && admin.scope > 0) {
             const guildsList = await Promise.all(
                 interaction.client.guilds.cache.map(async (guild) => {
                     const owner = await guild.fetchOwner();
 
-                    return `${guild.name}\n\
+                    return `${guild.name} \`${guild.memberCount}\`\n\
                     > ${lang.E.dot} Id: ${guild.id}\n\
                     > ${lang.E.dot} Owner: ${owner.user.tag}`;
                 })
@@ -127,6 +127,8 @@ module.exports = {
                 embeds: [guildsEmbed],
                 ephemeral: true,
             });
+        } else if (action === "ban" && admin.scope > 1) {
+
         } else {
             const operatingSystem = os.platform();
             const architecture = os.arch();
