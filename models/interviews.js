@@ -10,6 +10,10 @@ const Interviews = sequelize.define("interview", {
         type: Sequelize.STRING,
         unique: true,
     },
+    userId: {
+        type: Sequelize.STRING,
+        required: true,
+    },
 });
 
 module.exports = Interviews;
