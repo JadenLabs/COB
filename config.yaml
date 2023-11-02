@@ -19,7 +19,7 @@ botId: "1166951538086912101"
 # ──────────────────────────────────────────────────
 # Status / Presence
 # ──────────────────────────────────────────────────
-statusType: "idle"
+statusType: "online"
 # The status cycles through this list
 statusMessages:
     # Going for an animation here
