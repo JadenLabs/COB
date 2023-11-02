@@ -14,6 +14,14 @@ const InterviewSettings = sequelize.define("interviewSetting", {
         type: Sequelize.STRING,
         defaultValue: null,
     },
+    channelPrefix: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+    },
+    managerRole: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+    },
 });
 
 module.exports = InterviewSettings;
