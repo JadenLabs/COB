@@ -9,6 +9,7 @@ const {
     SlashCommandBuilder,
     PermissionFlagsBits,
 } = require("discord.js");
+const InterviewSettings = require("../../models/interviewSettings");
 const WelcomeSettings = require("../../models/welcomeSettings");
 const NetworkSettings = require("../../models/networkSettings");
 
@@ -27,6 +28,10 @@ module.exports = {
             await NetworkSettings.findOrCreate({
                 where: { guildId: interaction.guild.id },
             });
+        const [interviewSettings, interviewCreated] =
+            await InterviewSettings.findOrCreate({
+                where: { guildId: interaction.guild.id },
+            });
 
         // Strings
         const welcomeEnabled =
@@ -35,10 +40,18 @@ module.exports = {
             welcomeSettings.enabled === "1"
                 ? lang.E.greenTick
                 : lang.E.redCross;
+
         const networkEnabled =
             networkSettings.enabled === true ? "Enabled" : "Disabled";
         const networkEnabledEmoji =
             networkSettings.enabled === true
+                ? lang.E.greenTick
+                : lang.E.redCross;
+
+        const interviewEnabled =
+        interviewSettings.enabled === true ? "Enabled" : "Disabled";
+        const interviewEnabledEmoji =
+        interviewSettings.enabled === true
                 ? lang.E.greenTick
                 : lang.E.redCross;
 
@@ -52,7 +65,9 @@ module.exports = {
             > Welcome Settings:\n\
             > ${lang.E.reply} ${welcomeEnabledEmoji} \`${welcomeEnabled}\`
             > Network Settings:\n\
-            > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\``
+            > ${lang.E.reply} ${networkEnabledEmoji} \`${networkEnabled}\`\n\
+            > Interview Settings:\n\
+            > ${lang.E.reply} ${interviewEnabledEmoji} \`${interviewEnabled}\``
             )
             .setFooter({
                 text: `Requested by: ${interaction.user.tag}`,
@@ -72,11 +87,16 @@ module.exports = {
             .setCustomId("network_settings_button")
             .setLabel("Network Settings")
             .setStyle(ButtonStyle.Secondary);
+        const interviewButton = new ButtonBuilder()
+            .setCustomId("interview_settings_button")
+            .setLabel("Interview Settings")
+            .setStyle(ButtonStyle.Secondary);
 
         // Action row
         const row = new ActionRowBuilder().addComponents(
             welcomeButton,
-            networkButton
+            networkButton,
+            interviewButton
         );
         // Send embed
         await interaction.reply({
