@@ -37,6 +37,10 @@ module.exports = {
             const welcomeRole = welcomeSettings.welcomeRole
                 ? `<@&${welcomeSettings.welcomeRole}>`
                 : "None";
+            const joinRole = welcomeSettings.joinRole
+                ? `<@&${welcomeSettings.joinRole}>`
+                : "None";
+                
 
             // Embed
             const welcomePage = new EmbedBuilder()
@@ -51,6 +55,8 @@ module.exports = {
             > ${lang.E.reply} </set-ping-channel:1167943532271644734>\n\
             > Welcome Role:\n\
             > ${lang.E.reply} </set-welcome-role:1167548439324803287>\n\
+            > Join Role:\n\
+            > ${lang.E.reply} </set-join-role:1169434568332419202>\n\
 
             **Status**\n\
             > Enabled:\n\
@@ -60,7 +66,9 @@ module.exports = {
             > Ping Channel:\n\
             > ${lang.E.reply} ${pingChannel}
             > Welcome Role:\n\
-            > ${lang.E.reply} ${welcomeRole}`
+            > ${lang.E.reply} ${welcomeRole}\n\
+            > Join Role:\n\
+            > ${lang.E.reply} ${joinRole}`
                 )
                 .setFooter({
                     text: `Requested by: ${interaction.user.tag}`,
