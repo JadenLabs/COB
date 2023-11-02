@@ -36,17 +36,31 @@ module.exports = {
         }
 
         const pingRole = await guild.roles.fetch(welcomeSettings.welcomeRole);
+
         if (!pingRole)
             return interaction.reply({
                 content:
                     "It looks like the welcome role doesn't exist, or I don't have the needed perms for this operation.",
                 ephemeral: true,
             });
-        await member.roles.add(pingRole);
 
-        return interaction.reply({
-            content: `You have been given the ${pingRole} role!`,
-            ephemeral: true,
-        });
+        // Check if member has role
+        const hasRole = interaction.member.roles.cache.find(
+            (r) => r.name === pingRole.name
+        );
+
+        if (hasRole) {
+            await member.roles.remove(pingRole);
+
+            return interaction.reply({
+                content: `The ${pingRole} role has been removed and you have left the welcome crew.`,
+            });
+        } else {
+            await member.roles.add(pingRole);
+
+            return interaction.reply({
+                content: `You have been given the ${pingRole} role and have joined the welcome crew!`,
+            });
+        }
     },
 };
