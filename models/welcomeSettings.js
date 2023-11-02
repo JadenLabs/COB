@@ -23,6 +23,10 @@ const WelcomeSettings = sequelize.define("welcomeSetting", {
         type: Sequelize.STRING,
         required: false,
     },
+    joinRole: {
+        type: Sequelize.STRING,
+        required: false,
+    },
 });
 
 module.exports = WelcomeSettings;
