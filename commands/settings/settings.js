@@ -49,9 +49,9 @@ module.exports = {
                 : lang.E.redCross;
 
         const interviewEnabled =
-        interviewSettings.enabled === true ? "Enabled" : "Disabled";
+            interviewSettings.enabled === true ? "Enabled" : "Disabled";
         const interviewEnabledEmoji =
-        interviewSettings.enabled === true
+            interviewSettings.enabled === true
                 ? lang.E.greenTick
                 : lang.E.redCross;
 
