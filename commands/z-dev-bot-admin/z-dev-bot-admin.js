@@ -6,8 +6,6 @@ const Admins = require("../../models/admins");
 const Bans = require("../../models/bans");
 const os = require("os");
 
-const { startUsage, startTime } = require("../../index");
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("z-dev-bot-admin")
@@ -38,12 +36,6 @@ module.exports = {
                 2
             );
 
-            const endUsage = process.cpuUsage();
-            const allUsage = (
-                (endUsage.user - startUsage.user) /
-                1000000 /
-                60
-            ).toFixed(2);
             const uptimeSec = os.uptime().toFixed(2);
             const uptimeMin = (os.uptime() / 60).toFixed(2);
             const uptimeHr = (os.uptime() / 60 / 60).toFixed(2);
@@ -61,8 +53,6 @@ module.exports = {
                 > ${lang.E.reply} ${architecture}
                 > CPU Cores
                 > ${lang.E.reply} ${cpuCores}
-                > CPU time
-                > ${lang.E.reply} ${allUsage} mins
                 > Total Memory
                 > ${lang.E.reply} ${totalMemory} GBs
                 > Memory Usage
@@ -139,12 +129,6 @@ module.exports = {
                 2
             );
 
-            const endUsage = process.cpuUsage();
-            const allUsage = (
-                (endUsage.user - startUsage.user) /
-                1000000 /
-                60
-            ).toFixed(2);
             const uptimeSec = os.uptime().toFixed(2);
             const uptimeMin = (os.uptime() / 60).toFixed(2);
             const uptimeHr = (os.uptime() / 60 / 60).toFixed(2);
@@ -160,8 +144,6 @@ module.exports = {
                 > ${lang.E.reply} ${architecture}
                 > CPU Cores
                 > ${lang.E.reply} ${cpuCores}
-                > CPU time
-                > ${lang.E.reply} ${allUsage} mins
                 > Total Memory
                 > ${lang.E.reply} ${totalMemory} GBs
                 > Memory Usage
