@@ -16,7 +16,7 @@ const InterviewSettings = sequelize.define("interviewSetting", {
     },
     channelPrefix: {
         type: Sequelize.STRING,
-        defaultValue: null,
+        defaultValue: "int-",
     },
     managerRole: {
         type: Sequelize.STRING,

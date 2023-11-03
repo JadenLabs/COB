@@ -317,6 +317,14 @@ module.exports = {
                 interviewSettings.enabled === true
                     ? lang.E.greenTick
                     : lang.E.redCross;
+            const category = await interaction.guild.channels.fetch(
+                interviewSettings.categoryId
+            );
+            const categoryStr = category ? category.name : "None.";
+            const managerRole = interviewSettings.managerRole
+                ? `<@&${interviewSettings.managerRole}>`
+                : "None.";
+            const channelPrefix = interviewSettings.channelPrefix || "None.";
 
             // Embed
             const interviewPage = new EmbedBuilder()
@@ -325,12 +333,22 @@ module.exports = {
                 .setDescription(
                     `Use the buttons below to enable or disable this module.\n\n\
             **Commands**\n\
-            > Welcome Channel:\n\
-            > ${lang.E.reply} </set-welcome-channel:1167548439324803286>\n\
+            > Interview Category:\n\
+            > ${lang.E.reply} </set-interview-cat:1169464143049396377>\n\
+            > Manager Role:\n\
+            > ${lang.E.reply} </set-interview-manager:1169786313856254032>\n\
+            > Channel Prefix:\n\
+            > ${lang.E.reply} </set-interview-prefix:1169508539409104957>\n\
 
             **Status**\n\
             > Enabled:\n\
-            > ${lang.E.reply} ${interviewEnabledEmoji} \`${interviewEnabled}\``
+            > ${lang.E.reply} ${interviewEnabledEmoji} \`${interviewEnabled}\`\n\
+            > Category:\n\
+            > ${lang.E.reply} \`${categoryStr}\`\n\
+            > Manager Role:\n\
+            > ${lang.E.reply} ${managerRole}\n\
+            > Channel Prefix:\n\
+            > ${lang.E.reply} ${channelPrefix}`
                 )
                 .setFooter({
                     text: `Requested by: ${interaction.user.tag}`,
